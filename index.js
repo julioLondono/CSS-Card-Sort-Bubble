@@ -1,38 +1,48 @@
 // window.onLoad = () => {
+ 
+document.querySelector(".drawButton").addEventListener("click", () => {valueInput()}, false);
+function valueInput() {
+  let inputValue = document.querySelector("#numberOfCards").value;
+  // console.log("inputValue=" + inputValue);
+  //verify if the input is valid
+    let textInput = isNaN(inputValue);
+      // console.log("is Not a Number= " + textInput);
+      
+    let rango = false;
+    if(inputValue>1 && inputValue<14) {
+      rango = true;
+    }
+    // console.log("rango=" + rango);
     
-document.querySelector(".clickMe").addEventListener("click", () => {generateRandomCard()}, false);
+      let validEntry = false;
+      
+      if (rango===false || textInput===true) {
+        alert("Please enter a number between 2 and 13");
+        window.location.reload();  
+        validEntry = false;
+        return;
+      } else {
+      
+        validEntry =true;
+      // console.log("valid entry:" + validEntry );
+      }
+    
+      if ( validEntry === true) {
+      // console.log("numero a pasar por la funcion=" + inputValue);
+      // document.getElementById("result").innerHTML = inputValue;
+      return inputValue;
+      }
+  } /// return inputValue verifica si el valor entrado es correcto y entrega el valor entrado
 
-//funcion generateRandomSute
-let generateRandomNumbers =() => {
-
-// clear the DOM if a card is already there
-if(document.querySelector(".card"))
-{
-    // get elements
-    var child = document.querySelector(".card");
-    var parent = document.querySelector(".container");
-    // Delete child
-    parent.removeChild(child);
-}
+let generateRandomCard = (i) => {
     
   let randSute = Math.floor(Math.random() * 4) + 1;
   let randValue = Math.floor(Math.random() * 13) + 1;
   console.log("randSute inside function generateRandomSute=" + randSute);
   console.log("randValue inside function generateRandomSute=" + randValue);
-  return [randSute, randValue];
-}; /// cierre de la funcion generateRandomNumbers
-//funcion dealFunction
-let generateRandomCard = () => {
-
-    let randomNumbers = generateRandomNumbers();
-    let Sute = randomNumbers[0];
-    let Value = randomNumbers[1];
-    
-        // console.log("sute=" + Sute);
-        // console.log("value=" + Value);
-
+  
     let x=null;
-    switch(Sute) {
+    switch(randSute) {
     case 1:
         x = "&#x2660"; /// spades hex &#x2660
         break;
@@ -46,8 +56,9 @@ let generateRandomCard = () => {
         x = "&#x2666";  ///  diamonds hex &#x2666
         break;
     }
+    console.log ("x-Switch=" + x);
     let y = null;
-    switch(Value) {
+    switch(randValue) {
     case 1:
         y = "A";
         break;
@@ -61,15 +72,15 @@ let generateRandomCard = () => {
         y = "K";
         break;
     default:
-        y = Value;
+        y = randValue;
     }
-
+    console.log ("y-Switch=" + y);
 // create the following HTML elements in the DOM inside Container
 // <div class="card">
 //       <p class="nw"> x </p>
 //       <p class="value"> y </p>
 //       <p class="se"> x </p>
-//  </div>
+// </div>
 
     var card = document.createElement("div");                       // Create a <div> node
     card.className = "card";                                        // Assign a Class to the element
@@ -83,16 +94,45 @@ let generateRandomCard = () => {
     card.appendChild(face);                                         // Append the text to <div>
     card.appendChild(se);                                           // Append the text to <div>
     document.querySelector(".container").appendChild(card);         // Append <div> to <div> with id="container"
-    document.querySelector(".nw").innerHTML = x;
-    document.querySelector(".value").innerHTML = y;
-    document.querySelector(".se").innerHTML = x;
+    let innerNw=document.querySelectorAll(".nw");
+    innerNw[i].innerHTML = x;
+    let innerValue=document.querySelectorAll(".value");
+    innerValue[i].innerHTML = y;
+    let innerSe=document.querySelectorAll(".se");
+    innerSe[i].innerHTML = x;
 
     if(x==="&#x2665" || x==="&#x2666") {
-        document.querySelector(".nw").style.color = "red";
-        document.querySelector(".se").style.color = "red";
-    };
-    
+        innerNw[i].style.color = "red";
+        innerSe[i].style.color = "red";
+    }
+}; ///cierre de funcion generateRandomCards
 
-}; ///cierre de funcion generateRandomNumbers
+ //////// Esta funcion lee la cantidad de cartas y crea los divs en el dom con valores aleatorios///////////////////////////////////////
+document.querySelector(".drawButton").addEventListener("click", () => {drawCardsFunction()}, false); 
+
+let drawCardsFunction = () => {
+        // clear the DOM if a card is already there
+    if(document.querySelector(".card"))
+    {
+    // get elements
+    var child = document.querySelector(".card");
+    var parent = document.querySelector(".container");
+    // Delete child
+    parent.removeChild(child);
+    }
+  
+//create the divs based on the amount of cards entered
+  let inputtxt = document.querySelector("#numberOfCards").value;
+    // console.log("inputtxt=" + inputtxt);
+
+   for (var i=0; i<inputtxt; i++) { ////////////////////////////////////////////////////////////////////////crea los <divs> en HTML 
+      generateRandomCard(i);
+    }
+
+}; ///cierre de funcion drawCardsFunction  
+
+
+
+
 
 // };/// cierre de funcion onLoad
