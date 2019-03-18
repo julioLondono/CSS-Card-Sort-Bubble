@@ -1,7 +1,7 @@
 body{
   background-color: green;
 }
-.card{
+.card, .cardSort{
   position: relative;
   border-radius: 4%;
   background-color: white;
@@ -10,7 +10,7 @@ body{
   font-size: 10px;
   margin: 5px; 
 }
-.value {
+.value, .valueSort {
   position: absolute;
   left: 0;
   top: -20%;
@@ -18,13 +18,13 @@ body{
   text-align: center;
   font-size: 5em;
 }
-.nw {
+.nw, .nwSort{
   position: absolute;
   top: -40%;
   left: 3%;
   font-size: 4em;
 }
-.se {
+.se, .seSort {
   position: absolute;
   bottom: -40%;
   right: 3%;
@@ -41,7 +41,7 @@ input{
     align-items: baseline;
     
 }
-.container{
+.container, .bubbleLog{
    display: flex; 
    flex-wrap: wrap;
 }
