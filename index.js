@@ -133,7 +133,7 @@ let drawCardsFunction = () => {
 }; ///cierre de funcion drawCardsFunction  
 
 /// read the inner value of each div and create an array to sort using bubble.
-document.querySelector(".sortButton").addEventListener("click", () => {specificCardGenerator(1,13)}, false);
+document.querySelector(".sortButton").addEventListener("click", () => {renderBubbleIterations()}, false);
 
 let sortArray =() => {
   
@@ -151,7 +151,7 @@ let sortArray =() => {
         let value= cardDivs[j].children[1].innerHTML;
             valuesArray[j]= (value);
         }
-        console.log("valuesArray=" + valuesArray);
+        // console.log("CardsArray=" + valuesArray);
         
       let valuesNumbers = [];
       let x = null; 
@@ -159,29 +159,29 @@ let sortArray =() => {
       for(var m = 0; m < cardDivs.length; m++) {
             switch(valuesArray[m]) {
                 case 'A':
-                      y = 1;
+                      y = "1";
                       break;
                 case 'J':
-                      y = 11;
+                      y = "11";
                       break;
                 case 'Q':
-                      y = 12;
+                      y = "12";
                       break;
                 case 'K':
-                      y = 13;
+                      y = "13";
                       break;
                 default:
                       y = valuesArray[m];
             }
             valuesNumbers[m]=y;
-            console.log ("y-SwitchNumber=" + y);
+            // console.log ("y-SwitchNumber=" + y);
       } /// next m
                  console.log ("ValuesArray=" + valuesArray);
                  console.log("ValueNumbersArray="+valuesNumbers);
                  
     return [sutesArray, valuesNumbers];
                  
-}; ///end of sort Array, creates the arrays that will be sorted
+}; ///end of sort Array, creates the arrays [sutesArray, valuesArray] that will be sorted
 
 let specificCardGenerator = (faceIcon, valor) => { /// function to create a card with specific values
     
@@ -238,7 +238,7 @@ let specificCardGenerator = (faceIcon, valor) => { /// function to create a card
     cardSort.appendChild(nwSort);                                           // Append the text to <div>
     cardSort.appendChild(faceSort);                                         // Append the text to <div>
     cardSort.appendChild(seSort);                                           // Append the text to <div>
-    document.querySelector(".bubbleLog").appendChild(cardSort);         // Append <div> to <div> with id="container"
+    document.querySelector(".iterations").appendChild(cardSort);         // Append <div> to <div> with id="container"
     let innerNw=document.querySelector(".nwSort");
     innerNw.innerHTML = x;
     let innerValue=document.querySelector(".valueSort");
@@ -250,6 +250,62 @@ let specificCardGenerator = (faceIcon, valor) => { /// function to create a card
         innerNw.style.color = "red";
         innerSe.style.color = "red";
     }
-}; /// cierre de funcion specificCardGemerator
+}; /// end of function specificCardGemerator
+
+/////////////////////////////////////////////// Sorting Algorithm ///////////////////////////////////////
+let renderBubbleIterations = () => {
+
+        let arrays = sortArray();
+        
+        let a=arrays[1];
+        console.log("a="+a);
+        let b=arrays[0];
+        console.log("b="+b);
+        
+        for(var s =0; s<a.length;s++) {
+            a[s]= parseInt(a[s]);
+            console.log("a[s]="+a[s]);
+        }
+        console.log("a-parseInt="+a);
+        
+        let newArrayValues=[];
+        let newFacesValues=[];
+
+        let firstValue= null;
+        let secondValue = null;
+
+        let firstFace= null;
+        let secondFace = null;
+
+        let n = a.length;
+        let swaped = false;
+
+        for(var i=0; i<(n-1) ; i++) {
+            swaped = false;
+            for(var j =0; j<(n-1-i); j++) {
+                if (a[j]>a[j+1]) {
+                    firstValue= a[j];
+                    secondValue= a[j+1];
+                    firstFace= b[j];
+                    secondFace= b[j+1];
+                    
+                    
+                    a[j]=secondValue;
+                    a[j+1]=firstValue;
+                    b[j]=secondFace;
+                    b[j+1]=firstFace;
+                    
+                    swaped = true;
+                    newArrayValues=a;
+                    newFacesValues=b;
+                     console.log(newArrayValues);
+                     console.log(newFacesValues);
+                }
+            }
+           if (swaped === false){return}
+        }
+
+};/// end of renderBubbleIterations function
+/////////////////////////////////////////////// Sorting Algoritm/////////////////////////////////////////
 
 // };/// cierre de funcion onLoad

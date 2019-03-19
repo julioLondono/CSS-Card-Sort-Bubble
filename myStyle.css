@@ -41,7 +41,7 @@ input{
     align-items: baseline;
     
 }
-.container, .bubbleLog{
+.container, .iterations {
    display: flex; 
    flex-wrap: wrap;
 }
