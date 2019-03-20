@@ -87,9 +87,9 @@ let generateRandomCard = (i) => {
     card.className = "card";                                        // Assign a Class to the element
     var nw = document.createElement("p");                          // Create an element
     nw.className = "nw";
-    var face = document.createElement("p");                        // reate an element
+    var face = document.createElement("p");                        // Create an element
     face.className = "value";   
-    var se = document.createElement("p");                          // reate an element
+    var se = document.createElement("p");                          // Create an element
     se.className = "se";
     card.appendChild(nw);                                           // Append the text to <div>
     card.appendChild(face);                                         // Append the text to <div>
@@ -126,7 +126,7 @@ let drawCardsFunction = () => {
   let inputtxt = document.querySelector("#numberOfCards").value;
     // console.log("inputtxt=" + inputtxt);
 
-   for (var i=0; i<inputtxt; i++) { ////////////////////////////////////////////////////////////////////////crea los <divs> en HTML 
+   for (var i=0; i<inputtxt; i++) { //////////////////////////////////////////////////////crea los <divs> en HTML 
       generateRandomCard(i);
     }
 
@@ -183,74 +183,58 @@ let sortArray =() => {
                  
 }; ///end of sort Array, creates the arrays [sutesArray, valuesArray] that will be sorted
 
-let specificCardGenerator = (faceIcon, valor) => { /// function to create a card with specific values
+// let specificCardGenerator = (iteration, faceIcon, valor) => { /// function to create a card with specific values
+//     //should provide:  specific Sute(faceIcon) and specific Value(valor)
     
-    let x = null;
-    switch(faceIcon) {
-    case 1:
-        x = "&#x2660"; /// spades hex &#x2660
-        break;
-    case 2:
-        x = "&#x2663"; ///  clubs hex &#x2663
-        break;
-    case 3:
-        x = "&#x2665";  ///  hearts hex &#x2665
-        break;
-    case 4:
-        x = "&#x2666";  ///  diamonds hex &#x2666
-        break;
-    }
-    console.log ("x-Switch=" + x);
-    let y = null;
-    switch(valor) {
-    case 1:
-        y = "A";
-        break;
-    case 11:
-        y = "J";
-        break;
-    case 12:
-        y = "Q";
-        break;
-    case 13:
-        y = "K";
-        break;
-    default:
-        y = valor;
-    }
-    // console.log ("y-Switch=" + y);
-    
-// create the following HTML elements in the DOM inside Container
-// <div class="card">
-//       <p class="nw"> x </p>
-//       <p class="value"> y </p>
-//       <p class="se"> x </p>
-// </div>
+//     let y = null;
+//     switch(valor) {
+//     case 1:
+//         y = "A";
+//         break;
+//     case 11:
+//         y = "J";
+//         break;
+//     case 12:
+//         y = "Q";
+//         break;
+//     case 13:
+//         y = "K";
+//         break;
+//     default:
+//         y = valor;
+//     }
+   
+// // create the following HTML elements in the DOM inside Container
+// // <div class="card">
+// //       <p class="nw"> x </p>
+// //       <p class="value"> y </p>
+// //       <p class="se"> x </p>
+// // </div>
 
-    var cardSort = document.createElement("div");                      // Create a <div> node
-    cardSort.className = "cardSort";                                       // Assign a Class to the element
-    var nwSort = document.createElement("p");                          // Create an element
-    nwSort.className = "nwSort";
-    var faceSort = document.createElement("p");                        // reate an element
-    faceSort.className = "valueSort";   
-    var seSort = document.createElement("p");                          // reate an element
-    seSort.className = "seSort";
-    cardSort.appendChild(nwSort);                                           // Append the text to <div>
-    cardSort.appendChild(faceSort);                                         // Append the text to <div>
-    cardSort.appendChild(seSort);                                           // Append the text to <div>
-    document.querySelector(".iterations").appendChild(cardSort);         // Append <div> to <div> with id="container"
-    let innerNw=document.querySelector(".nwSort");
-    innerNw.innerHTML = x;
-    let innerValue=document.querySelector(".valueSort");
-    innerValue.innerHTML = y;
-    let innerSe=document.querySelector(".seSort");
-    innerSe.innerHTML = x;
+//     var cardSort = document.createElement("div");                      // Create a <div> node
+//     cardSort.className = "cardSort";                                    // Assign a Class to the element
+//     var nwSort = document.createElement("p");                          // Create an element
+//     nwSort.className = "nwSort";
+//     var faceSort = document.createElement("p");                        // Create an element
+//     faceSort.className = "valueSort";   
+//     var seSort = document.createElement("p");                          // Create an element
+//     seSort.className = "seSort";
+//     cardSort.appendChild(nwSort);                                       // Append the text to <div>
+//     cardSort.appendChild(faceSort);                                     // Append the text to <div>
+//     cardSort.appendChild(seSort);                                       // Append the text to <div>
+//     // document.querySelector(".sortCardContainer").appendChild(cardSort); // Append <div> to <div> with id="iteration" considerar mover esto a la funcion abajo
+//     let innerNw=document.querySelector(".nwSort");
+//     innerNw.innerHTML = faceIcon;
+//     let innerValue=document.querySelector(".valueSort");
+//     innerValue.innerHTML = y;
+//     let innerSe=document.querySelector(".seSort");
+//     innerSe.innerHTML = faceIcon;
 
-    if(x==="&#x2665" || x==="&#x2666") {
-        innerNw.style.color = "red";
-        innerSe.style.color = "red";
-    }
-}; /// end of function specificCardGemerator
+//     if(faceIcon==="&#x2665" || faceIcon==="&#x2666") {
+//         innerNw.style.color = "red";
+//         innerSe.style.color = "red";
+//     }
+// }; /// end of function specificCardGemerator [i, faceIcon, Valor]
 
 /////////////////////////////////////////////// Sorting Algorithm ///////////////////////////////////////
 let renderBubbleIterations = () => {
@@ -264,7 +248,6 @@ let renderBubbleIterations = () => {
         
         for(var s =0; s<a.length;s++) {
             a[s]= parseInt(a[s]);
-            console.log("a[s]="+a[s]);
         }
         console.log("a-parseInt="+a);
         
@@ -279,6 +262,7 @@ let renderBubbleIterations = () => {
 
         let n = a.length;
         let swaped = false;
+        let iterationNumber = 0;
 
         for(var i=0; i<(n-1) ; i++) {
             swaped = false;
@@ -289,18 +273,74 @@ let renderBubbleIterations = () => {
                     firstFace= b[j];
                     secondFace= b[j+1];
                     
-                    
                     a[j]=secondValue;
                     a[j+1]=firstValue;
                     b[j]=secondFace;
                     b[j+1]=firstFace;
                     
                     swaped = true;
-                    newArrayValues=a;
-                    newFacesValues=b;
-                     console.log(newArrayValues);
-                     console.log(newFacesValues);
+                    newArrayValues=a;           // se crea el array de la iteracion con los valores
+                    newFacesValues=b;           // se crea el array de la iteracion con los sutes
+                    
+                    iterationNumber++;
+                        console.log("j=" + j);
+                        console.log("i=" + i);
+                        console.log("Iteration Number="+ iterationNumber);
+                    
+                    // create the array div
+                    var iterations = document.createElement("div");                 // Create a <div> node
+                    iterations.className = " sortCardContainer iteration" + iterationNumber;  //asigna clases a cada div de las iteraciones
+                    var iterationRender = document.createElement("p");                  // Create an element
+                    iterationRender.className = "iterationRender";                     //Assign a class to the text element
+                    iterations.appendChild(iterationRender);                            // Append the text to <div>
+                    iterationRender.innerHTML = "Iteration="+iterationNumber;           //display the iteration number on each iteration
+                    document.querySelector(".bubbleLog").appendChild(iterations);   // Append las iteraciones al div contenedor bubbleLog
+                    
+                    // let iterationDiv = document.querySelectorAll(".sortCardContainer");
+                    // let divsLength = iterationDiv.length;
+                    
+                    newArrayValues.forEach(function(item) {                                          //for each item inside the Array
+                        var sortCardDiv = document.createElement("div");                                 // Create a <div> node
+                        sortCardDiv.className = "sortCard"; 
+                        //assign a class to each <div>
+                        document.querySelector(".iteration"+iterationNumber).appendChild(sortCardDiv);   // Append los div de cada carta al div con class iteracion#
+                    
+                                // var cardSort = document.createElement("div");                    // Create a <div> node
+                                //  cardSort.className = "cardSort";                                // Assign a Class to the element
+                                
+                                 var nwSort = document.createElement("p");                           // Create an element
+                                 nwSort.className = "nwSort";
+                                 var faceSort = document.createElement("p");                        // Create an element
+                                 faceSort.className = "valueSort";   
+                                 var seSort = document.createElement("p");                          // Create an element
+                                 seSort.className = "seSort";
+                                 
+                                 sortCardDiv.appendChild(nwSort);                                       // Append the text to <div>
+                                 sortCardDiv.appendChild(faceSort);                                     // Append the text to <div>
+                                 sortCardDiv.appendChild(seSort);                                       // Append the text to <div>
+                             // document.querySelector(".sortCardContainer").appendChild(cardSort); // Append <div> to <div> with id="iteration" considerar mover esto a la funcion abajo
+                                 let innerNw=document.querySelector(".nwSort");
+                                 innerNw.innerHTML = newFacesValues[item];
+                                 let innerValue=document.querySelector(".valueSort");
+                                 innerValue.innerHTML = item;
+                                 let innerSe=document.querySelector(".seSort");
+                                 innerSe.innerHTML = newFacesValues[item];
+
+                                    if(newFacesValues[item]==="&#x2665" || newFacesValues[item]==="&#x2666") {
+                                     innerNw.style.color = "red";
+                                     innerSe.style.color = "red";
+                                     }
+                        
+                        }); // end of forEach()
+                    
+                        // console.log("divsLenght=" + divsLength);
+                        // console.log("Iteration Divs=" + iterationDiv);
+                        // console.log("Iteration Div=" + iterationDiv[iterationNumber-1]);
+                        console.log(newArrayValues);
+                        console.log(newFacesValues);
+                     
                 }
+                
             }
            if (swaped === false){return}
         }

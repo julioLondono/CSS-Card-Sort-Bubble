@@ -1,7 +1,7 @@
 body{
   background-color: green;
 }
-.card, .cardSort{
+.card, .sortCard {
   position: relative;
   border-radius: 4%;
   background-color: white;
@@ -41,7 +41,7 @@ input{
     align-items: baseline;
     
 }
-.container, .iterations {
+.container, .sortCardContainer {
    display: flex; 
    flex-wrap: wrap;
 }
