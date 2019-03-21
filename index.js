@@ -144,7 +144,7 @@ let sortArray =() => {
         let sute= cardDivs[i].firstElementChild.innerHTML;
             sutesArray[i]= (sute);
         }
-        console.log("sutesArray=" + sutesArray);
+        // console.log("sutesArray=" + sutesArray);
         
         let valuesArray = [];
         for( var j = 0; j<cardDivs.length; j++) {
@@ -176,15 +176,15 @@ let sortArray =() => {
             valuesNumbers[m]=y;
             // console.log ("y-SwitchNumber=" + y);
       } /// next m
-                 console.log ("ValuesArray=" + valuesArray);
-                 console.log("ValueNumbersArray="+valuesNumbers);
+                //  console.log ("ValuesArray=" + valuesArray);
+                //  console.log("ValueNumbersArray="+valuesNumbers);
                  
     return [sutesArray, valuesNumbers];
                  
 }; ///end of sort Array, creates the arrays [sutesArray, valuesArray] that will be sorted
 
-// let specificCardGenerator = (iteration, faceIcon, valor) => { /// function to create a card with specific values
-//     //should provide:  specific Sute(faceIcon) and specific Value(valor)
+// let specificCardGenerator = (parent, faceIcon, valor) => { /// function to create a card with specific values
+//     // should provide:  specific Sute(faceIcon) and specific Value(valor)
     
 //     let y = null;
 //     switch(valor) {
@@ -211,22 +211,23 @@ let sortArray =() => {
 // //       <p class="se"> x </p>
 // // </div>
 
-//     var cardSort = document.createElement("div");                      // Create a <div> node
-//     cardSort.className = "cardSort";                                    // Assign a Class to the element
+//     // var cardSort = document.createElement("div");                      // Create a <div> node
+//     // cardSort.className = "cardSortDiv";                                    // Assign a Class to the element
 //     var nwSort = document.createElement("p");                          // Create an element
 //     nwSort.className = "nwSort";
 //     var faceSort = document.createElement("p");                        // Create an element
 //     faceSort.className = "valueSort";   
 //     var seSort = document.createElement("p");                          // Create an element
 //     seSort.className = "seSort";
-//     cardSort.appendChild(nwSort);                                       // Append the text to <div>
-//     cardSort.appendChild(faceSort);                                     // Append the text to <div>
-//     cardSort.appendChild(seSort);                                       // Append the text to <div>
+    
+//     parent.appendChild(nwSort);                                       // Append the text to <div>
+//     parent.appendChild(faceSort);                                     // Append the text to <div>
+//     parent.appendChild(seSort);                                       // Append the text to <div>
 //     // document.querySelector(".sortCardContainer").appendChild(cardSort); // Append <div> to <div> with id="iteration" considerar mover esto a la funcion abajo
 //     let innerNw=document.querySelector(".nwSort");
 //     innerNw.innerHTML = faceIcon;
 //     let innerValue=document.querySelector(".valueSort");
-//     innerValue.innerHTML = y;
+//     innerValue.innerHTML = valor;
 //     let innerSe=document.querySelector(".seSort");
 //     innerSe.innerHTML = faceIcon;
 
@@ -237,19 +238,19 @@ let sortArray =() => {
 // }; /// end of function specificCardGemerator [i, faceIcon, Valor]
 
 /////////////////////////////////////////////// Sorting Algorithm ///////////////////////////////////////
+console.log("aqui empieza el Bubble Algorithm");
 let renderBubbleIterations = () => {
 
         let arrays = sortArray();
         
         let a=arrays[1];
-        console.log("a="+a);
+        // console.log("a="+a);
         let b=arrays[0];
-        console.log("b="+b);
+        // console.log("b="+b);
         
         for(var s =0; s<a.length;s++) {
             a[s]= parseInt(a[s]);
         }
-        console.log("a-parseInt="+a);
         
         let newArrayValues=[];
         let newFacesValues=[];
@@ -283,62 +284,38 @@ let renderBubbleIterations = () => {
                     newFacesValues=b;           // se crea el array de la iteracion con los sutes
                     
                     iterationNumber++;
-                        console.log("j=" + j);
-                        console.log("i=" + i);
+                        
                         console.log("Iteration Number="+ iterationNumber);
+                        console.log("newArrayValues="+newArrayValues);
+                        console.log("newFacesValues="+newFacesValues);
                     
                     // create the array div
-                    var iterations = document.createElement("div");                 // Create a <div> node
-                    iterations.className = " sortCardContainer iteration" + iterationNumber;  //asigna clases a cada div de las iteraciones
-                    var iterationRender = document.createElement("p");                  // Create an element
-                    iterationRender.className = "iterationRender";                     //Assign a class to the text element
-                    iterations.appendChild(iterationRender);                            // Append the text to <div>
-                    iterationRender.innerHTML = "Iteration="+iterationNumber;           //display the iteration number on each iteration
-                    document.querySelector(".bubbleLog").appendChild(iterations);   // Append las iteraciones al div contenedor bubbleLog
+                    var iterations = document.createElement("div");                              // Create a <div> node
+                    iterations.className = "sortCardContainer iteration" + iterationNumber;     //asigna clases a cada div de las iteraciones
+                    iterations.setAttribute("id", "iterationID"+iterationNumber);                             //assign an Id to each <div>
+                    var iterationRender = document.createElement("p");                           // Create an element
+                    iterationRender.className = "iterationRender";                               //Assign a class to the text element
+                    iterations.appendChild(iterationRender);                                     // Append the text to <div>
+                    iterationRender.innerHTML = "Iteration="+iterationNumber;                    //display the iteration number on each iteration
+                    document.querySelector(".bubbleLog").appendChild(iterations);                // Append las iteraciones al div contenedor bubbleLog
                     
                     // let iterationDiv = document.querySelectorAll(".sortCardContainer");
                     // let divsLength = iterationDiv.length;
                     
-                    newArrayValues.forEach(function(item) {                                          //for each item inside the Array
+                    //esto funciona:
+                    newArrayValues.forEach(function(item, index) {                                       //for each item inside the Array
                         var sortCardDiv = document.createElement("div");                                 // Create a <div> node
-                        sortCardDiv.className = "sortCard"; 
-                        //assign a class to each <div>
+                        sortCardDiv.className = "sortCard" // sortCardDiv"+iterationNumber ;             //assign a class to each <div>
+                        sortCardDiv.setAttribute("id", "sortCardDiv"+index);                             //assign an Id to each <div>
                         document.querySelector(".iteration"+iterationNumber).appendChild(sortCardDiv);   // Append los div de cada carta al div con class iteracion#
-                    
-                                // var cardSort = document.createElement("div");                    // Create a <div> node
-                                //  cardSort.className = "cardSort";                                // Assign a Class to the element
-                                
-                                 var nwSort = document.createElement("p");                           // Create an element
-                                 nwSort.className = "nwSort";
-                                 var faceSort = document.createElement("p");                        // Create an element
-                                 faceSort.className = "valueSort";   
-                                 var seSort = document.createElement("p");                          // Create an element
-                                 seSort.className = "seSort";
-                                 
-                                 sortCardDiv.appendChild(nwSort);                                       // Append the text to <div>
-                                 sortCardDiv.appendChild(faceSort);                                     // Append the text to <div>
-                                 sortCardDiv.appendChild(seSort);                                       // Append the text to <div>
-                             // document.querySelector(".sortCardContainer").appendChild(cardSort); // Append <div> to <div> with id="iteration" considerar mover esto a la funcion abajo
-                                 let innerNw=document.querySelector(".nwSort");
-                                 innerNw.innerHTML = newFacesValues[item];
-                                 let innerValue=document.querySelector(".valueSort");
-                                 innerValue.innerHTML = item;
-                                 let innerSe=document.querySelector(".seSort");
-                                 innerSe.innerHTML = newFacesValues[item];
-
-                                    if(newFacesValues[item]==="&#x2665" || newFacesValues[item]==="&#x2666") {
-                                     innerNw.style.color = "red";
-                                     innerSe.style.color = "red";
-                                     }
-                        
-                        }); // end of forEach()
-                    
-                        // console.log("divsLenght=" + divsLength);
-                        // console.log("Iteration Divs=" + iterationDiv);
-                        // console.log("Iteration Div=" + iterationDiv[iterationNumber-1]);
-                        console.log(newArrayValues);
-                        console.log(newFacesValues);
+                     }); // end of forEach()
                      
+                     let sortCardsContainersArray = document.querySelectorAll(".iteration1");
+                     let bubbleLogArrayLength= sortCardsContainersArray.length;
+                     console.log("bubbleLogArrayLength="+bubbleLogArrayLength);
+                     
+                     let thirdCard= document.getElementById("iterationID1").childNodes[2];
+                     thirdCard.innerHTML="card3";
                 }
                 
             }
