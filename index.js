@@ -285,7 +285,8 @@ let renderBubbleIterations = () => {
                             
                             let nwSortInner= nwSort.innerHTML;
                             console.log(nwSortInner);
-                            if(nwSortInner === ("♥" || "♦")) {nwSort.style.color = "red"; };
+                            if(nwSortInner === "♦") {nwSort.style.color = "red"; };
+                            if(nwSortInner === "♥") {nwSort.style.color = "red"; };
                             
                             var faceSort = document.createElement("p");                           
                             faceSort.className = "valueSort";
@@ -299,7 +300,8 @@ let renderBubbleIterations = () => {
                             
                             let seSortInner= seSort.innerHTML;
                             console.log(seSortInner);
-                            if(seSortInner === ("♥" || "♦")) {seSort.style.color = "red"; };
+                            if(seSortInner === "♦") {seSort.style.color = "red"; };
+                            if(seSortInner === "♥") {seSort.style.color = "red"; };
                             
 
                         }
