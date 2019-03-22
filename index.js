@@ -296,7 +296,7 @@ let renderBubbleIterations = () => {
                     var iterationRender = document.createElement("p");                           // Create an element
                     iterationRender.className = "iterationRender";                               //Assign a class to the text element
                     iterations.appendChild(iterationRender);                                     // Append the text to <div>
-                    iterationRender.innerHTML = "Iteration="+iterationNumber;                    //display the iteration number on each iteration
+                    iterationRender.innerHTML = "Iteration #: "+iterationNumber;                    //display the iteration number on each iteration
                     document.querySelector(".bubbleLog").appendChild(iterations);                // Append las iteraciones al div contenedor bubbleLog
                     
                     // let iterationDiv = document.querySelectorAll(".sortCardContainer");
@@ -305,24 +305,79 @@ let renderBubbleIterations = () => {
                     //esto funciona:
                     newArrayValues.forEach(function(item, index) {                                       //for each item inside the Array
                         var sortCardDiv = document.createElement("div");                                 // Create a <div> node
-                        sortCardDiv.className = "sortCard" // sortCardDiv"+iterationNumber ;             //assign a class to each <div>
+                        sortCardDiv.className = "sortCard"; // sortCardDiv"+iterationNumber ;            //assign a class to each <div>
                         sortCardDiv.setAttribute("id", "sortCardDiv"+index);                             //assign an Id to each <div>
                         document.querySelector(".iteration"+iterationNumber).appendChild(sortCardDiv);   // Append los div de cada carta al div con class iteracion#
+                    
                      }); // end of forEach()
-                     
-                     let sortCardsContainersArray = document.querySelectorAll(".iteration1");
-                     let bubbleLogArrayLength= sortCardsContainersArray.length;
-                     console.log("bubbleLogArrayLength="+bubbleLogArrayLength);
-                     
-                     let thirdCard= document.getElementById("iterationID1").childNodes[2];
-                     thirdCard.innerHTML="card3";
+
+                    for(var f=0;f<newArrayValues.length; f++) {
+                        let sortCardContainer= document.getElementById("iterationID"+iterationNumber).childNodes[f+1];
+
+                            let letter = null;
+                                switch(newArrayValues[f]) {
+                                case 1:
+                                letter = "A";
+                                break;
+                                case 11:
+                                letter = "J";
+                                break;
+                                case 12:
+                                letter = "Q";
+                                break;
+                                case 13:
+                                letter = "K";
+                                break;
+                                default:
+                                letter = newArrayValues[f];
+                            }
+
+                            var nwSort = document.createElement("p");                                   // Create a <p> node                                                 
+                            nwSort.className = "nwSort";
+                            var nwSortFace = document.createTextNode(newFacesValues[f]);                // Create a text node
+                            nwSort.appendChild(nwSortFace);                                             // Append the text to <p>
+                            sortCardContainer.appendChild(nwSort);                                      // Append <p> to <div> with id="iterationID#"  
+                            
+                            var faceSort = document.createElement("p");                           
+                            faceSort.className = "valueSort";
+                            var SortValue = document.createTextNode(letter);
+                            faceSort.appendChild(SortValue);
+                            sortCardContainer.appendChild(faceSort);
+                            
+                            var seSort = document.createElement("p");                           
+                            seSort.className = "seSort";
+                            var seSortFace = document.createTextNode(newFacesValues[f]);
+                            seSort.appendChild(seSortFace);
+                            sortCardContainer.appendChild(seSort);  
+                            
+                            // console.log("seSortFace="+seSortFace[f].innerHTML);
+                            let innerNewFaceValue = newFacesValues[f];
+                            // console.log("innerFaceValue=" + innerNewFaceValue);
+                     }
+                        
                 }
-                
+                    
             }
            if (swaped === false){return}
         }
 
 };/// end of renderBubbleIterations function
-/////////////////////////////////////////////// Sorting Algoritm/////////////////////////////////////////
+///////////////////////////////////////////////End of  Sorting Algoritm/////////////////////////////////////////
+let bubbleContainer = document.querySelector(".bubbleLog");
+let redSute= bubbleContainer.querySelectorAll(".seSort");
+let redSuteLength = redSute.length;
+    console.log("redSute="+redSute);
+    console.log("redSuteLength="+redSuteLength);
+
+
+    
+    // newFacesValues.forEach(function(item) {    
+    //                             if(newFacesValues[item]==="&#x2665" || newFacesValues[item]==="&#x2666") {
+    //                                 newFacesValues[item].style.color = "red";
+    //                                 newFacesValues[item].style.color = "red";
+    //                             }
+    //                         });
+
+
 
 // };/// cierre de funcion onLoad

@@ -18,6 +18,9 @@ body{
   text-align: center;
   font-size: 5em;
 }
+.iterationRender{
+  font-size: 2em;
+}
 .nw, .nwSort{
   position: absolute;
   top: -40%;
