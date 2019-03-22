@@ -183,60 +183,6 @@ let sortArray =() => {
                  
 }; ///end of sort Array, creates the arrays [sutesArray, valuesArray] that will be sorted
 
-// let specificCardGenerator = (parent, faceIcon, valor) => { /// function to create a card with specific values
-//     // should provide:  specific Sute(faceIcon) and specific Value(valor)
-    
-//     let y = null;
-//     switch(valor) {
-//     case 1:
-//         y = "A";
-//         break;
-//     case 11:
-//         y = "J";
-//         break;
-//     case 12:
-//         y = "Q";
-//         break;
-//     case 13:
-//         y = "K";
-//         break;
-//     default:
-//         y = valor;
-//     }
-   
-// // create the following HTML elements in the DOM inside Container
-// // <div class="card">
-// //       <p class="nw"> x </p>
-// //       <p class="value"> y </p>
-// //       <p class="se"> x </p>
-// // </div>
-
-//     // var cardSort = document.createElement("div");                      // Create a <div> node
-//     // cardSort.className = "cardSortDiv";                                    // Assign a Class to the element
-//     var nwSort = document.createElement("p");                          // Create an element
-//     nwSort.className = "nwSort";
-//     var faceSort = document.createElement("p");                        // Create an element
-//     faceSort.className = "valueSort";   
-//     var seSort = document.createElement("p");                          // Create an element
-//     seSort.className = "seSort";
-    
-//     parent.appendChild(nwSort);                                       // Append the text to <div>
-//     parent.appendChild(faceSort);                                     // Append the text to <div>
-//     parent.appendChild(seSort);                                       // Append the text to <div>
-//     // document.querySelector(".sortCardContainer").appendChild(cardSort); // Append <div> to <div> with id="iteration" considerar mover esto a la funcion abajo
-//     let innerNw=document.querySelector(".nwSort");
-//     innerNw.innerHTML = faceIcon;
-//     let innerValue=document.querySelector(".valueSort");
-//     innerValue.innerHTML = valor;
-//     let innerSe=document.querySelector(".seSort");
-//     innerSe.innerHTML = faceIcon;
-
-//     if(faceIcon==="&#x2665" || faceIcon==="&#x2666") {
-//         innerNw.style.color = "red";
-//         innerSe.style.color = "red";
-//     }
-// }; /// end of function specificCardGemerator [i, faceIcon, Valor]
-
 /////////////////////////////////////////////// Sorting Algorithm ///////////////////////////////////////
 console.log("aqui empieza el Bubble Algorithm");
 let renderBubbleIterations = () => {
@@ -285,9 +231,9 @@ let renderBubbleIterations = () => {
                     
                     iterationNumber++;
                         
-                        console.log("Iteration Number="+ iterationNumber);
-                        console.log("newArrayValues="+newArrayValues);
-                        console.log("newFacesValues="+newFacesValues);
+                        // console.log("Iteration Number="+ iterationNumber);
+                        // console.log("newArrayValues="+newArrayValues);
+                        // console.log("newFacesValues="+newFacesValues);
                     
                     // create the array div
                     var iterations = document.createElement("div");                              // Create a <div> node
@@ -334,50 +280,49 @@ let renderBubbleIterations = () => {
 
                             var nwSort = document.createElement("p");                                   // Create a <p> node                                                 
                             nwSort.className = "nwSort";
-                            var nwSortFace = document.createTextNode(newFacesValues[f]);                // Create a text node
-                            nwSort.appendChild(nwSortFace);                                             // Append the text to <p>
+                            nwSort.innerHTML = newFacesValues[f];
                             sortCardContainer.appendChild(nwSort);                                      // Append <p> to <div> with id="iterationID#"  
+                            
+                            let nwSortInner= nwSort.innerHTML;
+                            console.log(nwSortInner);
+                            if(nwSortInner === ("♥" || "♦")) {nwSort.style.color = "red"; };
                             
                             var faceSort = document.createElement("p");                           
                             faceSort.className = "valueSort";
-                            var SortValue = document.createTextNode(letter);
-                            faceSort.appendChild(SortValue);
+                            faceSort.innerHTML = letter;
                             sortCardContainer.appendChild(faceSort);
                             
                             var seSort = document.createElement("p");                           
                             seSort.className = "seSort";
-                            var seSortFace = document.createTextNode(newFacesValues[f]);
-                            seSort.appendChild(seSortFace);
+                            seSort.innerHTML = newFacesValues[f];
                             sortCardContainer.appendChild(seSort);  
                             
-                            // console.log("seSortFace="+seSortFace[f].innerHTML);
-                            let innerNewFaceValue = newFacesValues[f];
-                            // console.log("innerFaceValue=" + innerNewFaceValue);
-                     }
+                            let seSortInner= seSort.innerHTML;
+                            console.log(seSortInner);
+                            if(seSortInner === ("♥" || "♦")) {seSort.style.color = "red"; };
+                            
+
+                        }
+                           
+                    }
                         
                 }
-                    
-            }
+                 
            if (swaped === false){return}
         }
 
+
+
+
+
 };/// end of renderBubbleIterations function
 ///////////////////////////////////////////////End of  Sorting Algoritm/////////////////////////////////////////
-let bubbleContainer = document.querySelector(".bubbleLog");
-let redSute= bubbleContainer.querySelectorAll(".seSort");
-let redSuteLength = redSute.length;
-    console.log("redSute="+redSute);
-    console.log("redSuteLength="+redSuteLength);
 
+document.querySelector(".sortButton").addEventListener("click", () => {createButton()}, false);
+function createButton() {
+  var element = document.createElement("button");
+  element.appendChild(document.createTextNode("Try Again"));
+  var page = document.getElementById("btn");
+  page.appendChild(element);
+}
 
-    
-    // newFacesValues.forEach(function(item) {    
-    //                             if(newFacesValues[item]==="&#x2665" || newFacesValues[item]==="&#x2666") {
-    //                                 newFacesValues[item].style.color = "red";
-    //                                 newFacesValues[item].style.color = "red";
-    //                             }
-    //                         });
-
-
-
-// };/// cierre de funcion onLoad

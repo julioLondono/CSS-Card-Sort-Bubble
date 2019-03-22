@@ -11,12 +11,13 @@
     <div class=dataEntry>
           <div><h2>Please enter a number between 2 and 13:</h2></div>
           <div><input id="numberOfCards" type="text" name="cardInput"></div>
-          <div><button type="button" class="drawButton">Draw</button></div>
-          <div><button type="button" class="sortButton">Sort</button></div>
+          <div><button type="button" id="drawBtn" class="drawButton" onclick="this.disabled = 'disabled';">Draw</button></div>
+          <div><button type="button" id="sortBtn" class="sortButton" onclick="this.disabled = 'disabled';">Sort</button></div>
+          <div id="btn" onClick="window.location.reload()"></div>
     </div>  
     <div class="container"> </div>
     <h2>Bubble Log:</h2>
-    <div class="bubbleLog"> 
+    <div id="bubbleLogId" class="bubbleLog"> 
     
     </div>
     <script src="index.js"></script>
